@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEEV 2026 – Your Free Class 9 Companion</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #0ea5e9, #0d9488);
+            --secondary-gradient: linear-gradient(135deg, #2dd4bf, #0284c7);
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            transition: background-color 0.3s ease;
+        }
+        
+        .dark body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: all 0.3s ease;
+        }
+        
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .hero-gradient {
+            background: var(--secondary-gradient);
+        }
+        
+        .particle-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .particle-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://i.supaimg.com/dd053cc2-3d07-4c93-bbe9-ccd4565ea1cf.webp') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .flip-card {
+            perspective: 1000px;
+        }
+        
+        .flip-card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            backface-visibility: hidden;
+        }
+        
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+        
+        .feature-icon {
+            background: var(--primary-gradient);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+        
+        .community-card {
+            transition: all 0.3s ease;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .community-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .community-card {
+            background-color: #1e293b;
+        }
+        
+        .dark .community-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .theme-toggle {
+            width: 50px;
+            height: 24px;
+            border-radius: 12px;
+            background-color: #cbd5e1;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .dark .theme-toggle {
+            background-color: #475569;
+        }
+        
+        .theme-toggle-handle {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: white;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .dark .theme-toggle-handle {
+            transform: translateX(26px);
+            background-color: #0ea5e9;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .dark .particle {
+            background: rgba(14, 165, 233, 0.2);
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .counter-item {
+            transition: all 0.4s ease;
+        }
+        
+        .counter-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            background: var(--primary-gradient);
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-slate-900">
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-slate-900 shadow-lg dark:shadow-none sticky top-0 z-50 transition-colors duration-300">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-3">
+                <div class="flex items-center space-x-4">
+                    <img src="https://i.supaimg.com/dd053cc2-3d07-4c93-bbe9-ccd4565ea1cf.webp" alt="NEEV 2026 Logo" class="h-12 w-12 rounded-full glow-effect">
+                    <span class="font-bold text-xl text-primary-600 dark:text-primary-400">NEEV 2026</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Features</a>
+                    <a href="#notes" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Notes</a>
+                    <a href="#stats" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Statistics</a>
+                    <a href="#community" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Community</a>
+                    <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-gray-700 dark:text-gray-300">
+                            <i class="fas fa-sun"></i>
+                        </span>
+                        <div class="theme-toggle">
+                            <div class="theme-toggle-handle">
+                                <i class="fas fa-moon text-xs text-gray-700"></i>
+                            </div>
+                        </div>
+                        <span class="text-gray-700 dark:text-gray-300">
+                            <i class="fas fa-moon"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="md:hidden flex items-center space-x-2 mr-2">
+                        <span class="text-gray-700 dark:text-gray-300 text-sm">
+                            <i class="fas fa-sun"></i>
+                        </span>
+                        <div class="theme-toggle">
+                            <div class="theme-toggle-handle">
+                                <i class="fas fa-moon text-xs text-gray-700"></i>
+                            </div>
+                        </div>
+                        <span class="text-gray-700 dark:text-gray-300 text-sm">
+                            <i class="fas fa-moon"></i>
+                        </span>
+                    </div>
+                    <div class="md:hidden">
+                        <button class="mobile-menu-button p-2 focus:outline-none">
+                            <svg class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden md:hidden bg-white dark:bg-slate-800 py-4 px-4 transition-colors">
+            <a href="#features" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Features</a>
+            <a href="#notes" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Notes</a>
+            <a href="#stats" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Statistics</a>
+            <a href="#community" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Community</a>
+            <a href="#contact" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white particle-bg py-20 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center relative z-10">
+                <div class="floating" data-aos="zoom-in">
+                    <img src="https://i.supaimg.com/7b625fa9-f46c-4d90-bd38-d70a762e3249.jpg" alt="NEEV 2026 Hero Logo" class="mx-auto h-40 w-40 rounded-full glow-effect mb-8 border-4 border-white">
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4" data-aos="fade-up">NEEV 2026 – Your Free Class 9 Companion</h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90" data-aos="fade-up" data-aos-delay="200">"Launched by Murli Kumar, a Class 10 student & Full Stack Developer from Bihar"</p>
+                <div class="bg-black bg-opacity-30 inline-block px-6 py-3 rounded-full mb-8" data-aos="fade-up" data-aos-delay="300">
+                    <p class="text-2xl font-bold">"I BELIEVE IN SKILLS, NOT MARKSHEET"</p>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://youtube.com/@neev2026-o4y" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full flex items-center justify-center gap-2 transition-all transform hover:scale-105">
+                        <i class="fab fa-youtube"></i> Watch Lectures
+                    </a>
+                    <a href="#notes" class="bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-6 rounded-full flex items-center justify-center gap-2 transition-all transform hover:scale-105">
+                        <i class="fas fa-download"></i> Download Notes
+                    </a>
+                    <a href="https://t.me/neev_2027" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full flex items-center justify-center gap-2 transition-all transform hover:scale-105">
+                        <i class="fab fa-telegram"></i> Join Telegram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white dark:bg-slate-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white" data-aos="fade-up">Our Premium Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card glass-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-video text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-center dark:text-white">Free Premium Lectures</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-center">High-quality video lectures available on YouTube covering all Class 9 subjects.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card glass-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-file-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-center dark:text-white">DPPs & Handwritten Notes</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-center">Daily Practice Problems and beautifully handwritten notes for effective learning.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card glass-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-bell text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-center dark:text-white">Lecture Notifications</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-center">Get instant notifications when new lectures and materials are uploaded.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card glass-card p-6 rounded-lg shadow-md hover:shadow-lg transition-all" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-users text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-center dark:text-white">Active Community</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-center">Join our Telegram and WhatsApp groups for doubt solving and peer support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notes Section -->
+    <section id="notes" class="py-16 bg-gray-50 dark:bg-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white" data-aos="fade-up">Download Notes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Physics Wallah Notes -->
+                <div class="community-card glass-card p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-blue-500 text-5xl mb-4">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 dark:text-white">Physics Wallah Notes</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Comprehensive notes from Physics Wallah covering all Class 9 subjects.</p>
+                    <div class="flex justify-center">
+                        <a href="https://drive.google.com/drive/folders/12dMd4JkzjvfSdkluqiNBsgUkq7q4uhnq" target="_blank" class="bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-6 rounded-full inline-block transition-all transform hover:scale-105">
+                            Download Now
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Next Topper Notes -->
+                <div class="community-card glass-card p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-green-500 text-5xl mb-4">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 dark:text-white">Next Topper Notes</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">High-quality notes from Next Topper to help you excel in your studies.</p>
+                    <div class="flex justify-center">
+                        <a href="https://drive.google.com/drive/folders/1IMiE8NsUGfOHe24Ao-oem4lx28ShNbjf" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full inline-block transition-all transform hover:scale-105">
+                            Download Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="stats" class="py-16 bg-white dark:bg-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white" data-aos="fade-up">Our Achievements</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Stat 1 -->
+                <div class="counter-item glass-card p-8 rounded-lg text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="text-5xl font-bold text-primary-600 dark:text-primary-400 mb-2">
+                        <span class="count" data-target="11000">0</span>+
+                    </div>
+                    <h3 class="text-xl font-semibold dark:text-white">Students</h3>
+                </div>
+                
+                <!-- Stat 2 -->
+                <div class="counter-item glass-card p-8 rounded-lg text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="text-5xl font-bold text-primary-600 dark:text-primary-400 mb-2">
+                        <span class="count" data-target="500">0</span>+
+                    </div>
+                    <h3 class="text-xl font-semibold dark:text-white">Lectures Uploaded</h3>
+                </div>
+                
+                <!-- Stat 3 -->
+                <div class="counter-item glass-card p-8 rounded-lg text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="text-5xl font-bold text-primary-600 dark:text-primary-400 mb-2">
+                        <span class="count" data-target="200">0</span>+
+                    </div>
+                    <h3 class="text-xl font-semibold dark:text-white">Notes Added</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer Section -->
+    <section class="py-16 bg-gray-50 dark:bg-slate-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white" data-aos="fade-up">Meet the Developer</h2>
+            
+            <div class="glass-card p-6 rounded-lg shadow-md max-w-3xl mx-auto" data-aos="zoom-in">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="relative mb-6 md:mb-0 md:mr-6">
+                        <img src="https://i.supaimg.com/dd053cc2-3d07-4c93-bbe9-ccd4565ea1cf.webp" alt="Murli Kumar" class="w-32 h-32 rounded-full border-4 border-primary-500 dark:border-primary-400">
+                        <div class="absolute bottom-0 right-0 bg-primary-600 text-white rounded-full w-10 h-10 flex items-center justify-center">
+                            <i class="fas fa-code"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2 dark:text-white">Murli Kumar</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">"This website is designed and built by Murli Kumar, a Full Stack Developer and AI Enthusiast from Bihar, currently studying in Class 10."</p>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span class="bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-100 px-3 py-1 rounded-full text-sm">HTML</span>
+                            <span class="bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-100 px-3 py-1 rounded-full text-sm">CSS</span>
+                            <span class="bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-100 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                            <span class="bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-100 px-3 py-1 rounded-full text-sm">Tailwind</span>
+                            <span class="bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-100 px-3 py-1 rounded-full text-sm">React</span>
+                            <span class="bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-100 px-3 py-1 rounded-full text-sm">Node.js</span>
+                            <span class="bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-100 px-3 py-1 rounded-full text-sm">Firebase</span>
+                            <span class="bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-100 px-3 py-1 rounded-full text-sm">AI Tools</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="py-16 bg-white dark:bg-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white" data-aos="fade-up">Join Our Community</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Telegram -->
+                <div class="community-card glass-card p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-blue-500 text-5xl mb-4">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 dark:text-white">Telegram Channel</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Join our Telegram for updates, notes, and discussions.</p>
+                    <div class="flex justify-center">
+                        <a href="https://t.me/neev_2027" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full inline-block transition-all transform hover:scale-105">
+                            Join Now
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- YouTube -->
+                <div class="community-card glass-card p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-red-600 text-5xl mb-4">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 dark:text-white">YouTube Channel</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Subscribe for free premium lectures and educational content.</p>
+                    <div class="flex justify-center">
+                        <a href="https://youtube.com/@neev2026-o4y" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full inline-block transition-all transform hover:scale-105">
+                            Subscribe
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- WhatsApp -->
+                <div class="community-card glass-card p-6 rounded-lg shadow-md text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-green-500 text-5xl mb-4">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 dark:text-white">WhatsApp Channel</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Get instant updates and materials on WhatsApp.</p>
+                    <div class="flex justify-center">
+                        <a href="https://whatsapp.com/channel/0029Vb5M0iGFHWpx9lqO9G3d" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full inline-block transition-all transform hover:scale-105">
+                            Join Channel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50 dark:bg-slate-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-12 dark:text-white" data-aos="fade-up">Contact & Feedback</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <h3 class="text-xl font-semibold mb-4 dark:text-white">Get in Touch</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Have questions or feedback? Reach out to us directly or fill out the form.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="text-primary-600 dark:text-primary-400 mt-1 mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium dark:text-white">Email</h4>
+                                <a href="mailto:murlikumar097@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">murlikumar097@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-primary-600 dark:text-primary-400 mt-1 mr-4">
+                                <i class="fab fa-telegram"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium dark:text-white">Telegram</h4>
+                                <a href="https://t.me/neev_2027" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">@neev_2027</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-primary-600 dark:text-primary-400 mt-1 mr-4">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium dark:text-white">WhatsApp</h4>
+                                <a href="https://whatsapp.com/channel/0029Vb5M0iGFHWpx9lqO9G3d" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">NEEV 2026 Channel</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-medium mb-3 dark:text-white">Send us a message directly</h4>
+                        <div class="flex space-x-3">
+                            <a href="https://t.me/neev_2027" class="bg-blue-500 hover:bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a href="https://whatsapp.com/channel/0029Vb5M0iGFHWpx9lqO9G3d" class="bg-green-500 hover:bg-green-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="mailto:murlikumar097@gmail.com" class="bg-red-500 hover:bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <form id="feedbackForm" class="glass-card p-6 rounded-lg shadow-md">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 dark:text-gray-300 mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white">
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="message" class="block text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white"></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 dark:text-gray-300 mb-2">Rating</label>
+                            <div class="flex space-x-2">
+                                <button type="button" class="rating-btn text-2xl hover:scale-110 transition-transform" data-rating="1">😞</button>
+                                <button type="button" class="rating-btn text-2xl hover:scale-110 transition-transform" data-rating="2">🙁</button>
+                                <button type="button" class="rating-btn text-2xl hover:scale-110 transition-transform" data-rating="3">😐</button>
+                                <button type="button" class="rating-btn text-2xl hover:scale-110 transition-transform" data-rating="4">🙂</button>
+                                <button type="button" class="rating-btn text-2xl hover:scale-110 transition-transform" data-rating="5">😀</button>
+                            </div>
+                            <input type="hidden" id="rating" value="0">
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-4 rounded-full transition-all transform hover:scale-[1.02]">
+                            Submit Feedback
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <img src="https://i.supaimg.com/dd053cc2-3d07-4c93-bbe9-ccd4565ea1cf.webp" alt="NEEV 2026 Logo" class="mx-auto h-16 w-16 mb-4">
+                <p class="text-2xl font-bold mb-4">"I BELIEVE IN SKILLS, NOT MARKSHEET"</p>
+                <p class="text-gray-400 mb-6">Free Educational Portal for Class 9 - Inspired by Physics Wallah</p>
+                
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="https://youtube.com/@neev2026-o4y" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-youtube text-2xl"></i>
+                    </a>
+                    <a href="https://t.me/neev_2027" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-telegram text-2xl"></i>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vb5M0iGFHWpx9lqO9G3d" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2023 NEEV 2026. All rights reserved.</p>
+                    <p class="text-gray-400">🧑‍💻 Developed by Murli Kumar | Class 10 | From Bihar</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Feedback Success Modal -->
+    <div id="successModal" class="fixed inset-0 flex items-center justify-center z-50 hidden bg-black bg-opacity-50">
+        <div class="bg-white dark:bg-slate-800 rounded-lg p-8 max-w-md w-full mx-4 text-center shadow-xl">
+            <div class="text-green-500 text-6xl mb-4">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2 dark:text-white">Thank You!</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">Your feedback has been submitted successfully.</p>
+            <button id="closeModal" class="bg-primary-600 hover:bg-primary-700 text-white font-bold py-2 px-6 rounded-full transition-all">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating CTA Button (Mobile) -->
+    <div class="fixed bottom-6 right-6 md:hidden z-40">
+        <a href="https://t.me/neev_2027" class="bg-blue-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-600 transition-all transform hover:scale-105">
+            <i class="fab fa-telegram text-2xl"></i>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Rating selection
+        const ratingButtons = document.querySelectorAll('.rating-btn');
+        const ratingInput = document.getElementById('rating');
+        
+        ratingButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                ratingButtons.forEach(btn => {
+                    btn.classList.remove('text-yellow-400', 'scale-110');
+                    btn.classList.add('text-gray-400');
+                });
+                
+                // Add active class to clicked button
+                button.classList.remove('text-gray-400');
+                button.classList.add('text-yellow-400', 'scale-110');
+                
+                // Set rating value
+                ratingInput.value = button.dataset.rating;
+            });
+        });
+        
+        // Form submission
+        const feedbackForm = document.getElementById('feedbackForm');
+        const successModal = document.getElementById('successModal');
+        const closeModal = document.getElementById('closeModal');
+        
+        feedbackForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to a server
+            // For demo purposes, we'll just show the success modal
+            successModal.classList.remove('hidden');
+        });
+        
+        closeModal.addEventListener('click', () => {
+            successModal.classList.add('hidden');
+        });
+        
+        // Dark mode toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        });
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+        
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation delay
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Initialize particles
+        createParticles();
+        
+        // Counting animation function
+        function animateCounter(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value.toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Initialize counters when they come into view
+        const counterElements = document.querySelectorAll('.count');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.getAttribute('data-target'));
+                    animateCounter(entry.target, 0, target, 2000);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        counterElements.forEach(counter => {
+            observer.observe(counter);
+        });
+    </script>
+</body>
+</html>
